@@ -1,4 +1,4 @@
-package top.yaoyongdou.model;
+package io.github.foodsearcher.model;
 
 /**
  * Created by AAAAA on 2018-02-19.

@@ -1,4 +1,4 @@
-package top.yaoyongdou.config;
+package io.github.foodsearcher.config;
 
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.context.annotation.PropertySource;
-import top.yaoyongdou.shiro.AirMgrRealm;
+import io.github.foodsearcher.model.shiro.AirMgrRealm;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

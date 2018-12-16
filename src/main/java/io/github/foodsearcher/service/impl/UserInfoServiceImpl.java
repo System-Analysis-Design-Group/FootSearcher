@@ -1,9 +1,9 @@
-package top.yaoyongdou.service.impl;
+package io.github.foodsearcher.service.impl;
 
+import io.github.foodsearcher.dao.UserInfoDao;
+import io.github.foodsearcher.service.UserInfoService;
+import io.github.foodsearcher.model.UserInfo;
 import org.springframework.stereotype.Service;
-import top.yaoyongdou.dao.UserInfoDao;
-import top.yaoyongdou.service.UserInfoService;
-import top.yaoyongdou.shiro.UserInfo;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;

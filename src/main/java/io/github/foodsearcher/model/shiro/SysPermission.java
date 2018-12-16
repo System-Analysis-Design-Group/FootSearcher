@@ -1,4 +1,4 @@
-package top.yaoyongdou.shiro;
+package io.github.foodsearcher.model.shiro;
 
 import javax.persistence.*;
 import java.io.Serializable;

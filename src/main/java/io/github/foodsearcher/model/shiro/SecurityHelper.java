@@ -1,4 +1,4 @@
-package top.yaoyongdou.shiro;
+package io.github.foodsearcher.model.shiro;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 

@@ -1,5 +1,9 @@
-package top.yaoyongdou.controller;
+package io.github.foodsearcher.controller;
 
+import io.github.foodsearcher.model.StatusMsg;
+import io.github.foodsearcher.service.UserInfoService;
+import io.github.foodsearcher.model.shiro.SecurityHelper;
+import io.github.foodsearcher.model.UserInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -7,10 +11,6 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.yaoyongdou.model.StatusMsg;
-import top.yaoyongdou.service.UserInfoService;
-import top.yaoyongdou.shiro.SecurityHelper;
-import top.yaoyongdou.shiro.UserInfo;
 
 import javax.validation.constraints.NotNull;
 

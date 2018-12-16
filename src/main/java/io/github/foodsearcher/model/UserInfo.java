@@ -1,6 +1,6 @@
-package top.yaoyongdou.shiro;
+package io.github.foodsearcher.model;
 
-import top.yaoyongdou.shiro.SysRole;
+import io.github.foodsearcher.model.shiro.SysRole;
 
 import javax.persistence.*;
 import java.io.Serializable;

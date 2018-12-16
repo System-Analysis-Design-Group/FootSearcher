@@ -1,7 +1,8 @@
-package top.yaoyongdou.dao;
+package io.github.foodsearcher.dao;
 
+
+import io.github.foodsearcher.model.UserInfo;
 import org.springframework.data.repository.CrudRepository;
-import top.yaoyongdou.shiro.UserInfo;
 
 /**
  * Created by young on 18-3-11.

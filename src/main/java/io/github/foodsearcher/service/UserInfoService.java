@@ -1,6 +1,6 @@
-package top.yaoyongdou.service;
+package io.github.foodsearcher.service;
 
-import top.yaoyongdou.shiro.UserInfo;
+import io.github.foodsearcher.model.UserInfo;
 
 /**
  * Created by young on 18-3-11.

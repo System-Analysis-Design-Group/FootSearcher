@@ -1,9 +1,9 @@
-package top.yaoyongdou.controller;
+package io.github.foodsearcher.controller;
 
+import io.github.foodsearcher.model.StatusMsg;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.yaoyongdou.model.StatusMsg;
 
 /**
  * Created by young on 18-3-16.
