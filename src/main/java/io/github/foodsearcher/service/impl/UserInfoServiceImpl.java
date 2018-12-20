@@ -3,6 +3,7 @@ package io.github.foodsearcher.service.impl;
 import io.github.foodsearcher.dao.UserInfoDao;
 import io.github.foodsearcher.service.UserInfoService;
 import io.github.foodsearcher.model.UserInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +18,7 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserInfoServiceImpl implements UserInfoService {
 
-    @Resource
+    @Autowired
     private UserInfoDao userInfoDao;
 
     @Override
