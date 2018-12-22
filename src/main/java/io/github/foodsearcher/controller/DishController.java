@@ -1,11 +1,15 @@
 package io.github.foodsearcher.controller;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.foodsearcher.model.DishInfo;
+import io.github.foodsearcher.model.OrderInfo;
 import io.github.foodsearcher.model.StatusMsg;
 import io.github.foodsearcher.service.DishInfoService;
 
@@ -24,19 +28,19 @@ private DishInfoService dishInfoService;
 		return StatusMsg.returnOk();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public DishInfo getDish(@RequestParam("id") Long id) {
-		DishInfo result = new DishInfo();
+	@RequestMapping(value = "/{dishId}",method = RequestMethod.GET)
+	public StatusMsg getDish(@PathVariable("dishId") Long id) {
+		DishInfo result;
 		try {
 			result = dishInfoService.findById(id);
 		} catch (Exception exp) {
-			return result;
+			return StatusMsg.returnError();
 		}
-		return result;
+		return StatusMsg.returnOkWithObj((Object) result);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE)
-	public StatusMsg deleteDish(@RequestParam("id") Long id) {
+	@RequestMapping(value = "/{dishId}",method = RequestMethod.DELETE)
+	public StatusMsg deleteDish(@PathVariable("dishid") Long id) {
 		try {
 			dishInfoService.delete(id);
 		} catch (Exception exp) {
@@ -53,5 +57,16 @@ private DishInfoService dishInfoService;
 			return StatusMsg.returnError();
 		}
 		return StatusMsg.returnOk();
+	}
+	
+	@RequestMapping(value="/store/{storeId}",method = RequestMethod.GET)
+	public StatusMsg getStoreDish(@PathVariable("storeId") Long id) {
+		List<DishInfo> result;
+		try {
+			result = dishInfoService.findByStoreId(id);
+		} catch (Exception exp) {
+			return StatusMsg.returnError();
+		}
+		return StatusMsg.returnOkWithObj((Object) result);
 	}
 }

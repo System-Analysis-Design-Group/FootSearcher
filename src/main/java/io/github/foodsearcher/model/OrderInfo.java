@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ public class OrderInfo implements Serializable {
 	private Long storeID;
 	private Long addressID;
 	private int numGoods;
+	private static String date;
 //	private GoodInfo goodInfo;
 	@OneToMany
 	private Set<GoodInfo> Goods;
@@ -53,6 +55,13 @@ public class OrderInfo implements Serializable {
 	public void setNumGoods(int numGoods) { this.numGoods = numGoods; }
 	public int getNumGoods() {
 		return numGoods;
+	}
+	
+	public static void setDate() {
+		date = new Date().toString();
+	}
+	public String getDate() {
+		return date;
 	}
 	
 	public void setGoodsInfo(Set<GoodInfo> goods) {

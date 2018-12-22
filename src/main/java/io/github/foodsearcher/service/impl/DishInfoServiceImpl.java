@@ -1,5 +1,7 @@
 package io.github.foodsearcher.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +34,10 @@ public class DishInfoServiceImpl implements DishInfoService{
 	public DishInfo updataDishInfo(DishInfo dishInfo) {
 		System.out.println("DishInfoServiceImpl.updateDishInfo()");
         return dishInfoDao.save(dishInfo);
+	}
+	
+	public List<DishInfo> findByStoreId(Long id) {
+		System.out.println("DishInfoServiceImpl.findByStoreID()");
+        return dishInfoDao.findAllByStoreId(id);
 	}
 }	

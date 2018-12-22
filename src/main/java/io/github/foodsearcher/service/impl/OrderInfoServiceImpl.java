@@ -7,6 +7,8 @@ import io.github.foodsearcher.dao.OrderInfoDao;
 import io.github.foodsearcher.model.OrderInfo;
 import io.github.foodsearcher.service.OrderInfoService;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 @Service
@@ -35,5 +37,15 @@ public class OrderInfoServiceImpl implements OrderInfoService{
 		OrderInfo orderInfo = orderInfoDao.findByID(id);
 		orderInfo.setState(state);
         return orderInfoDao.save(orderInfo);
+	}
+	
+	public List<OrderInfo> findByStoreID(Long id) {
+		System.out.println("OrderInfoServiceImpl.findByStoreID()");
+        return orderInfoDao.findAllByStoreID(id);
+	}
+	
+	public List<OrderInfo> findByUserID(Long id) {
+		System.out.println("OrderInfoServiceImpl.findByStoreID()");
+        return orderInfoDao.findAllByUserID(id);
 	}
 }
