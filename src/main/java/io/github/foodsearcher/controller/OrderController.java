@@ -1,15 +1,13 @@
 package io.github.foodsearcher.controller;
 
-import java.util.HashMap;
 import java.util.List;
-
-import org.hibernate.mapping.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import io.github.foodsearcher.model.OrderInfo;
 import io.github.foodsearcher.model.StatusMsg;
@@ -19,14 +17,17 @@ import io.github.foodsearcher.service.OrderInfoService;
 @RequestMapping("/orders")
 public class OrderController {
 	
+	@Autowired
 	private OrderInfoService orderInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public StatusMsg createOrder(OrderInfo orderInfo) {
+	public StatusMsg createOrder(@RequestBody OrderInfo orderInfo) {
 		try {
 			orderInfoService.createOrderInfo(orderInfo);
 		} catch (Exception exp) {
+			exp.printStackTrace();
 			return StatusMsg.returnError();
+			
 		}
 		return StatusMsg.returnOk();
 	}

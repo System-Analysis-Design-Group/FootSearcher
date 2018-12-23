@@ -1,6 +1,7 @@
 package io.github.foodsearcher.dao;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.github.foodsearcher.model.OrderInfo;
 

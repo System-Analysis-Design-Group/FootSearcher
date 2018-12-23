@@ -2,21 +2,22 @@ package io.github.foodsearcher.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.foodsearcher.model.DishInfo;
-import io.github.foodsearcher.model.OrderInfo;
 import io.github.foodsearcher.model.StatusMsg;
 import io.github.foodsearcher.service.DishInfoService;
 
 @RestController
 @RequestMapping("/dishes")
 public class DishController {
-private DishInfoService dishInfoService;
+	
+	@Autowired
+	private DishInfoService dishInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public StatusMsg createDish(DishInfo dishInfo) {
