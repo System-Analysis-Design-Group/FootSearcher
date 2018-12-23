@@ -16,3 +16,7 @@ https://dev.mysql.com/downloads/mysql/
 
 1. 设置IP 和 Port 到 `/main/resources/application.properties` 中
 2. 设置  Application.java 中的 `@SpringBootApplication(exclude = {ShiroConfiguration.class})` 从而关闭 Mysql 的启动请求
+
+## jar 打包流程
+1. maven compile
+2. maven package
