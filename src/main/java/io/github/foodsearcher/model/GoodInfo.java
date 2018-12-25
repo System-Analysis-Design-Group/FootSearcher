@@ -15,18 +15,18 @@ public class GoodInfo implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
-	private int Num;
-	private double UnitPrice;
-	private OrderInfo orderInfo;
+	private int num;
+	private double unitPrice;
+	// private OrderInfo orderInfo;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	public OrderInfo getOrderInfo() {
-		return orderInfo;
-	}
-	
-	public void setOrderInfo(OrderInfo orderInfo) {
-		this.orderInfo = orderInfo;
-	}
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	public OrderInfo getOrderInfo() {
+//		return orderInfo;
+//	}
+//	
+//	public void setOrderInfo(OrderInfo orderInfo) {
+//		this.orderInfo = orderInfo;
+//	}
 	
 	
 	public Long getGoodID() {
@@ -38,18 +38,18 @@ public class GoodInfo implements Serializable{
 	}
 	
 	public int getNum() {
-		return Num;
+		return num;
 	}
 	
 	public void setNum(int num) {
-		Num = num;
+		this.num = num;
 	}
 	
 	public double getUnitPrice() {
-		return UnitPrice;
+		return unitPrice;
 	}
 	
 	public void setUnitPrice(double price) {
-		UnitPrice = price;
+		unitPrice = price;
 	}
 }

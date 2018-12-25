@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +14,14 @@ import io.github.foodsearcher.model.StatusMsg;
 import io.github.foodsearcher.service.DishInfoService;
 
 @RestController
-@RequestMapping("/dishes")
+@RequestMapping("/dishes")																																		
 public class DishController {
 	
 	@Autowired
 	private DishInfoService dishInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public StatusMsg createDish(DishInfo dishInfo) {
+	public StatusMsg createDish(@RequestBody DishInfo dishInfo) {
 		DishInfo res;
 		try {
 			res = dishInfoService.createDishInfo(dishInfo);
@@ -42,7 +43,7 @@ public class DishController {
 	}
 	
 	@RequestMapping(value = "/{dishId}",method = RequestMethod.DELETE)
-	public StatusMsg deleteDish(@PathVariable("dishid") Long id) {
+	public StatusMsg deleteDish(@PathVariable("dishId") Long id) {
 		try {
 			dishInfoService.delete(id);
 		} catch (Exception exp) {
@@ -52,7 +53,7 @@ public class DishController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public StatusMsg updateDish(DishInfo dishInfo) {
+	public StatusMsg updateDish(@RequestBody DishInfo dishInfo) {
 		DishInfo result;
 		try {
 			result = dishInfoService.updataDishInfo(dishInfo);

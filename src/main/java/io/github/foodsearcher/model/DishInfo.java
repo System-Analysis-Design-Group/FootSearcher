@@ -15,6 +15,7 @@ public class DishInfo implements Serializable{
 	private Long id;
 	private String name;
 	private Long storeId;
+	private Long typeId;
 	private String description;
 	private double orPrice;
 	private double cuPrice;
@@ -28,6 +29,9 @@ public class DishInfo implements Serializable{
 	}
 	public void setStoreId(Long storeId) {
 		this.storeId = storeId;
+	}
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
 	}
 	public void setDescription(String desc) {
 		this.description = desc;
@@ -50,6 +54,9 @@ public class DishInfo implements Serializable{
 	}
 	public Long getStoreId() {
 		return storeId;
+	}
+	public Long getTypeId() {
+		return typeId;
 	}
 	public String getDescription() {
 		return description;

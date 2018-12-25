@@ -26,10 +26,12 @@ public class OrderInfo implements Serializable {
 	private Long storeID;
 	private Long addressID;
 	private int numGoods;
-	private static String date;
+	private String date;
 //	private GoodInfo goodInfo;
 	@OneToMany
-	private Set<GoodInfo> Goods;
+	private List<GoodInfo> goodsInfo;
+//	private List<Integer> dishNum;
+//	private List<Long> dishId;
 	private int state;
 	
 	public void setID(Long id) {
@@ -60,21 +62,32 @@ public class OrderInfo implements Serializable {
 	public int getNumGoods() {
 		return numGoods;
 	}
-	
-	public static void setDate() {
+//	public List<Integer> getDishNum() {
+//		return dishNum;
+//	}
+//	public void setDishNum(List<Integer> dishNum) {
+//		this.dishNum = dishNum;
+//	}
+//	public List<Long> getDishId() {
+//		return dishId;
+//	}
+//	public void setDishId(List<Long> dishId) {
+//		this.dishId = dishId;
+//	}
+	public void setDate() {
 		date = new Date().toString();
 	}
 	public String getDate() {
 		return date;
 	}
 	
-	public void setGoodsInfo(Set<GoodInfo> goods) {
-		Goods = goods;
+	public void setGoodsInfo(List<GoodInfo> goods) {
+		goodsInfo = goods;
 	}
 	
 	
-	public Set<GoodInfo> getGoodsInfo() {
-		return Goods;
+	public List<GoodInfo> getGoodsInfo() {
+		return goodsInfo;
 	}
 	public void setState(int state) {
 		this.state = state;

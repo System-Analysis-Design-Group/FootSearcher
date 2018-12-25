@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.foodsearcher.model.GoodInfo;
 import io.github.foodsearcher.model.OrderInfo;
 import io.github.foodsearcher.model.StatusMsg;
+import io.github.foodsearcher.service.GoodInfoService;
 import io.github.foodsearcher.service.OrderInfoService;
 
 @RestController
@@ -19,11 +21,20 @@ public class OrderController {
 	
 	@Autowired
 	private OrderInfoService orderInfoService;
+	@Autowired
+	private GoodInfoService goodInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public StatusMsg createOrder(@RequestBody OrderInfo orderInfo) {
 		OrderInfo result;
+		GoodInfo goods;
 		try {
+			orderInfo.setDate();
+			List<GoodInfo> goodInfo = orderInfo.getGoodsInfo();
+			for(int i = 0; i < goodInfo.size(); i++){
+				goods = goodInfo.get(i);
+				goods = goodInfoService.createGoodInfo(goods);
+			}
 			result = orderInfoService.createOrderInfo(orderInfo);
 		} catch (Exception exp) {
 			exp.printStackTrace();
@@ -56,10 +67,10 @@ public class OrderController {
 	
 	@RequestMapping(method = RequestMethod.PUT)
 	public StatusMsg updateOrder(@RequestParam("id") Long id,
-								 @RequestParam("status") int status) {
+								 @RequestParam("status") int state) {
 		OrderInfo result;
 		try {
-			result = orderInfoService.updataOrderInfo(id, status);
+			result = orderInfoService.updataOrderInfo(id, state);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
 		}

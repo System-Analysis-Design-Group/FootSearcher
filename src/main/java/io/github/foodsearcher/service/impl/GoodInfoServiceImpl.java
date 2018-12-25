@@ -3,6 +3,7 @@ package io.github.foodsearcher.service.impl;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.foodsearcher.dao.GoodInfoDao;
@@ -13,6 +14,7 @@ import io.github.foodsearcher.service.GoodInfoService;
 @Transactional
 public class GoodInfoServiceImpl implements GoodInfoService{
 	
+	@Autowired
 	private GoodInfoDao goodInfoDao;
 	
 	public GoodInfo findById(Long id) {
