@@ -21,12 +21,13 @@ public class DishController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public StatusMsg createDish(DishInfo dishInfo) {
+		DishInfo res;
 		try {
-			dishInfoService.createDishInfo(dishInfo);
+			res = dishInfoService.createDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
 		}
-		return StatusMsg.returnOk();
+		return StatusMsg.returnOkWithObj((Object) res);
 	}
 	
 	@RequestMapping(value = "/{dishId}",method = RequestMethod.GET)
@@ -52,12 +53,13 @@ public class DishController {
 	
 	@RequestMapping(method = RequestMethod.PUT)
 	public StatusMsg updateDish(DishInfo dishInfo) {
+		DishInfo result;
 		try {
-			dishInfoService.updataDishInfo(dishInfo);
+			result = dishInfoService.updataDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
 		}
-		return StatusMsg.returnOk();
+		return StatusMsg.returnOkWithObj((Object) result);
 	}
 	
 	@RequestMapping(value="/store/{storeId}",method = RequestMethod.GET)

@@ -22,14 +22,15 @@ public class OrderController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public StatusMsg createOrder(@RequestBody OrderInfo orderInfo) {
+		OrderInfo result;
 		try {
-			orderInfoService.createOrderInfo(orderInfo);
+			result = orderInfoService.createOrderInfo(orderInfo);
 		} catch (Exception exp) {
 			exp.printStackTrace();
 			return StatusMsg.returnError();
 			
 		}
-		return StatusMsg.returnOk();
+		return StatusMsg.returnOkWithObj((Object) result);
 	}
 	
 	@RequestMapping(value = "/{orderId}",method = RequestMethod.GET)
@@ -56,12 +57,13 @@ public class OrderController {
 	@RequestMapping(method = RequestMethod.PUT)
 	public StatusMsg updateOrder(@RequestParam("id") Long id,
 								 @RequestParam("status") int status) {
+		OrderInfo result;
 		try {
-			orderInfoService.updataOrderInfo(id, status);
+			result = orderInfoService.updataOrderInfo(id, status);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
 		}
-		return StatusMsg.returnOk();
+		return StatusMsg.returnOkWithObj((Object) result);
 	}
 	
 	@RequestMapping(value="/store/{storeId}",method = RequestMethod.GET)
