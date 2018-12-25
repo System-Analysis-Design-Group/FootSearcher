@@ -16,6 +16,7 @@ public class GoodInfo implements Serializable{
 	@GeneratedValue
 	private Long id;
 	private int num;
+	private Long dishId;
 	private double unitPrice;
 	// private OrderInfo orderInfo;
 	
@@ -29,11 +30,11 @@ public class GoodInfo implements Serializable{
 //	}
 	
 	
-	public Long getGoodID() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setGoodID(Long goodID) {
+	public void setId(Long goodID) {
 		id = goodID;
 	}
 	
@@ -51,5 +52,12 @@ public class GoodInfo implements Serializable{
 	
 	public void setUnitPrice(double price) {
 		unitPrice = price;
+	}
+	
+	public Long getDishId() {
+		return dishId;
+	}
+	public void setDishId(Long dishId) {
+		this.dishId = dishId;
 	}
 }
