@@ -1,5 +1,6 @@
 package io.github.foodsearcher.controller;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,22 +28,47 @@ public class DishController {
 	private DishInfoService dishInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public StatusMsg createDish(@RequestBody DishInfo dishInfo, @RequestParam("file") MultipartFile file) {
+	public StatusMsg createDish(@RequestBody DishInfo dishInfo) {
 		DishInfo res;
 		try {
-			Path path = null;
-			if (file != null && StringUtils.hasText(file.getOriginalFilename())) {
-				String UPLOADED_FOLDER = "/picture/dishes/";
-				byte[] bytes = file.getBytes();
-		        path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-		        Files.write(path, bytes);
-			}
-			dishInfo.setImagePath(path.toString());
 			res = dishInfoService.createDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
 		}
 		return StatusMsg.returnOkWithObj((Object) res);
+	}
+	
+	@RequestMapping(value = "/{dishId}",method = RequestMethod.PUT)
+	public StatusMsg updatePicture(@PathVariable("dishId") Long id, @RequestParam(value = "file", required = false) MultipartFile file) {
+		DishInfo res = dishInfoService.findById(id);
+		try {
+			Path path = null;
+			File directory = new File(".");
+			String UPLOADED_FOLDER = "/picture/dishes/";
+			File dir = new File(directory.getCanonicalPath() + UPLOADED_FOLDER);
+			if (dir.exists()) {
+	            if (dir.isDirectory()) {
+	                System.out.println("dir exists");
+	            } else {
+	                System.out.println("the same name file exists, can not create dir");
+	            }
+	        } else {
+	            System.out.println("dir not exists, create it ...");
+	            dir.mkdir();
+	        }
+			if (file != null && StringUtils.hasText(file.getOriginalFilename())) {
+				byte[] bytes = file.getBytes();
+		        path = Paths.get(directory.getCanonicalPath() + UPLOADED_FOLDER + file.getOriginalFilename());
+		        Files.write(path, bytes);
+			}
+			if(path != null){
+				res.setImagePath(path.toString());
+			}
+			res = dishInfoService.updataDishInfo(res);
+		} catch (Exception exp) {
+			return StatusMsg.returnError();
+		}
+		return StatusMsg.returnOkWithObj((Object) res.getImagePath());
 	}
 	
 	@RequestMapping(value = "/{dishId}",method = RequestMethod.GET)
@@ -67,17 +93,9 @@ public class DishController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public StatusMsg updateDish(@RequestBody DishInfo dishInfo, @RequestParam("file") MultipartFile file) {
+	public StatusMsg updateDish(@RequestBody DishInfo dishInfo) {
 		DishInfo result;
 		try {
-			Path path = null;
-			if (file != null && StringUtils.hasText(file.getOriginalFilename())) {
-				String UPLOADED_FOLDER = "/picture/dishes/";
-				byte[] bytes = file.getBytes();
-		        path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-		        Files.write(path, bytes);
-			}
-			dishInfo.setImagePath(path.toString());
 			result = dishInfoService.updataDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
