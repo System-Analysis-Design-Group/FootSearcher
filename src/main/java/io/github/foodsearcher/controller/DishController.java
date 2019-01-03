@@ -1,13 +1,19 @@
 package io.github.foodsearcher.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import io.github.foodsearcher.model.DishInfo;
 import io.github.foodsearcher.model.StatusMsg;
@@ -21,9 +27,17 @@ public class DishController {
 	private DishInfoService dishInfoService;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public StatusMsg createDish(@RequestBody DishInfo dishInfo) {
+	public StatusMsg createDish(@RequestBody DishInfo dishInfo, @RequestParam("file") MultipartFile file) {
 		DishInfo res;
 		try {
+			Path path = null;
+			if (file != null && StringUtils.hasText(file.getOriginalFilename())) {
+				String UPLOADED_FOLDER = "/picture/dishes/";
+				byte[] bytes = file.getBytes();
+		        path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+		        Files.write(path, bytes);
+			}
+			dishInfo.setImagePath(path.toString());
 			res = dishInfoService.createDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();
@@ -53,9 +67,17 @@ public class DishController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT)
-	public StatusMsg updateDish(@RequestBody DishInfo dishInfo) {
+	public StatusMsg updateDish(@RequestBody DishInfo dishInfo, @RequestParam("file") MultipartFile file) {
 		DishInfo result;
 		try {
+			Path path = null;
+			if (file != null && StringUtils.hasText(file.getOriginalFilename())) {
+				String UPLOADED_FOLDER = "/picture/dishes/";
+				byte[] bytes = file.getBytes();
+		        path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+		        Files.write(path, bytes);
+			}
+			dishInfo.setImagePath(path.toString());
 			result = dishInfoService.updataDishInfo(dishInfo);
 		} catch (Exception exp) {
 			return StatusMsg.returnError();

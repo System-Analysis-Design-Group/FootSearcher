@@ -42,7 +42,7 @@ public class DishInfo implements Serializable{
 	public void setCuPrice(double cuPrice) {
 		this.cuPrice = cuPrice;
 	}
-	public void setImageId(String path) {
+	public void setImagePath(String path) {
 		this.imagePath= path;
 	}
 	
