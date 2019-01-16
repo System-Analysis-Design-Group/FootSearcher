@@ -3,13 +3,20 @@ package io.github.foodsearcher.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,6 +78,27 @@ public class DishController {
 			return StatusMsg.returnError();
 		}
 		return StatusMsg.returnOkWithObj((Object) res.getImagePath());
+	}
+	
+	@RequestMapping(value = "/images/{dishId}",method = RequestMethod.GET)
+	public StatusMsg updatePicture(@PathVariable("dishId") Long id, HttpServletResponse response) {
+		DishInfo res = dishInfoService.findById(id);
+		try {
+			InputStream inputStream = new FileInputStream(new File(res.getImagePath()));
+            OutputStream outputStream = response.getOutputStream();
+            response.setContentType("application/force-download");
+            String fileName = res.getImagePath();
+            response.addHeader("Content-Disposition", "attachment;fileName=" + fileName.substring(17)); 
+            IOUtils.copy(inputStream, outputStream);
+            outputStream.flush();
+            return StatusMsg.returnOk();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return StatusMsg.returnError();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return StatusMsg.returnError();
+        }
 	}
 	
 	@RequestMapping(value = "/{dishId}",method = RequestMethod.GET)
