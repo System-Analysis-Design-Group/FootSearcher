@@ -29,7 +29,7 @@ public class GoodInfo implements Serializable{
 //		this.orderInfo = orderInfo;
 //	}
 	
-	
+	curl
 	public Long getId() {
 		return id;
 	}

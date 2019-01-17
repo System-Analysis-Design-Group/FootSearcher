@@ -49,7 +49,7 @@ public class DishController {
 		return StatusMsg.returnOkWithObj((Object) res);
 	}
 	
-	@RequestMapping(value = "/{dishId}",method = RequestMethod.PUT)
+	@RequestMapping(value = "/{dishId}",method = RequestMethod.POST)
 	public StatusMsg updatePicture(@PathVariable("dishId") Long id, @RequestParam(value = "file", required = false) MultipartFile multipartFile) {
 		DishInfo res = dishInfoService.findById(id);
 		try {

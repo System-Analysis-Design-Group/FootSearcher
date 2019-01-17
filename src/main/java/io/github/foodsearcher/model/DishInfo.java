@@ -55,7 +55,7 @@ public class DishInfo implements Serializable{
 	public Long getStoreId() {
 		return storeId;
 	}
-	public String getTypeId() {
+	public String getTypeName() {
 		return typeName;
 	}
 	public String getDescription() {
