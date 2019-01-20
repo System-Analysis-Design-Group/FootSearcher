@@ -1,6 +1,6 @@
 # FootSearch
 
-# 项目构建顺序
+# 项目Java部分构建顺序
 
 ## 构建 Mysql 项目
 1. 下载 mysql zip 文件包
@@ -20,3 +20,12 @@ https://dev.mysql.com/downloads/mysql/
 ## jar 打包流程
 1. maven compile
 2. maven package
+
+# 项目Golang部分构建顺序
+
+## 构建Mysql项目
+下载安装同上，需要创建一个名为account的数据库
+设置密码至conf/app.conf
+
+## 项目运行
+bee run
